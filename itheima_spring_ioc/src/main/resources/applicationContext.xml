@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--3、创建spring核心配置文件并4 、在spring配置文件中配置UserDaoImpl-->
+    <!--无参构造方法实例化-->
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl" ></bean>
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl"></bean>
+    <!--静态工厂-->
+    <!--<bean id="userDao" class="com.itheima.factory.StaticFactory" factory-method="getUserDao"></bean>-->
+    <!--动态工厂-->
+    <!--<bean id="factory" class="com.itheima.factory.DynamicFactory"></bean>-->
+    <!--<bean id="userDao" factory-bean="factory" factory-method="getUserDao"/>-->
+</beans>
