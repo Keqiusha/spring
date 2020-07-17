@@ -4,11 +4,56 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <!--3、创建spring核心配置文件并4 、在spring配置文件中配置UserDaoImpl-->
     <!--无参构造方法实例化-->
-    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl" ></bean>
-    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl"></bean>
+<!--    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl" >-->
+<!--&lt;!&ndash;        普通属性的注入&ndash;&gt;-->
+<!--        <property name="username" value="张三"/>-->
+<!--        <property name="age" value="18"/>-->
+<!--    </bean>-->
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl" >
+        <!--        普通属性的注入-->
+        <property name="strList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>vvv</value>
+                <value>ccc</value>
+            </list>
+        </property>
+<!--        map的注入-->
+        <property name="userMap">
+            <map>
+<!--                被引用对象必须在对象 -->
+                <entry key="u1" value-ref="user1"></entry>
+                <entry key="u2" value-ref="user2"></entry>
+            </map>
+        </property>
+<!--       集合的注入-->
+        <property name="properties">
+            <props>
+                <prop key="p1">ppp1</prop>
+                <prop key="p2">ppp2</prop>
+                <prop key="p3">ppp2</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="user1" class="com.itheima.domain.User">
+        <property name="name" value="tom"/>
+        <property name="addr" value="北京"/>
+    </bean>
+    <bean id="user2" class="com.itheima.domain.User">
+        <property name="name" value="jim"/>
+        <property name="addr" value="天津"/>
+    </bean>
+<!--    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl"></bean>-->
     <!--静态工厂-->
     <!--<bean id="userDao" class="com.itheima.factory.StaticFactory" factory-method="getUserDao"></bean>-->
     <!--动态工厂-->
     <!--<bean id="factory" class="com.itheima.factory.DynamicFactory"></bean>-->
     <!--<bean id="userDao" factory-bean="factory" factory-method="getUserDao"/>-->
+<!--    构造方法注入-->
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="userDao"></constructor-arg>
+    </bean>
+    <import resource="applicationContext-user.xml"/>
+    <import resource="applicationContext-product.xml"/>
 </beans>
