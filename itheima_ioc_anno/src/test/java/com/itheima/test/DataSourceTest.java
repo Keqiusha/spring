@@ -1,8 +1,7 @@
-package com.iteheima.test;
+package com.itheima.test;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import javafx.application.Application;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
